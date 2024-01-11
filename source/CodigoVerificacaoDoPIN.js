@@ -1,4 +1,3 @@
-// CodigoVerificacaoDoPIN.js
 const pinPorAdivinhar = gerarPinAleatorio();
 
 function gerarPinAleatorio() {
@@ -19,18 +18,25 @@ function receberSupostoPin() {
 }
 
 function verificarPin(supostoPin, pinPorAdivinhar) {
+  const resultElement = document.getElementById('result');
+  
   if (supostoPin === pinPorAdivinhar.toString()) {
-    return "Parabéns! Você acertou!";
+    resultElement.textContent = "Parabéns! Você acertou!";
   } else {
     const diff = pinPorAdivinhar - parseInt(supostoPin);
     if (diff > 1000) {
-      return "Muito menor! Tente um número muito maior.";
+      resultElement.textContent = "Muito menor! Tente um número muito maior.";
     } else if (diff > 0) {
-      return "Menor! Tente um número maior.";
+      resultElement.textContent = "Menor! Tente um número maior.";
     } else if (diff < -1000) {
-      return "Muito maior! Tente um número muito menor.";
+      resultElement.textContent = "Muito maior! Tente um número muito menor.";
     } else {
-      return "Maior! Tente um número menor.";
+      resultElement.textContent = "Maior! Tente um número menor.";
     }
   }
+}
+
+function verificar() {
+  const supostoPin = document.getElementById('pinInput').value;
+  verificarPin(supostoPin, pinPorAdivinhar);
 }
